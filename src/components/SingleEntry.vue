@@ -5,7 +5,7 @@
             <p class="money">{{entry.money}}</p>
             <p class="date">Added: {{new Date(this.entry.date)}}</p>
         </div>
-        <button class="btn" @click="removeEntry" title="Remove entry">X</button>
+        <button class="btn remove-btn" @click="removeEntry" title="Remove entry">X</button>
     </div>
 </template>
 
@@ -53,7 +53,6 @@ export default {
     }
     .date{
         font-size: 10px;
-        color: dimgray;
         margin-top: 0;
         margin-bottom: 8px;
     }
@@ -66,20 +65,15 @@ export default {
         height: 50px;
         font-size: 25px;
         font-weight: 700;
-        color: red;
         cursor: pointer
     }
     .entry-container{
-        border: 1px solid black;
         border-radius: 5px;
         padding: 5px 10px;
         margin: 15px 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        -webkit-box-shadow: 4px 4px 12px 0px rgba(66, 68, 90, 1);
-        -moz-box-shadow: 4px 4px 12px 0px rgba(66, 68, 90, 1);
-        box-shadow: 4px 4px 12px 0px rgba(66, 68, 90, 1);
     }
     @media (max-width: 500px){
         button{

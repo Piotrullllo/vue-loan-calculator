@@ -14,7 +14,7 @@ export default {
 <style scoped>
     img{
         width: 40px;
-        margin: -5px;
+        margin: -2px;
     }
     header{
         display: flex;

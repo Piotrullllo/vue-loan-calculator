@@ -1,8 +1,8 @@
 <template>
-    <form :class="[{'hide-form': isFormHidden}]" @submit="onSubmit">
+    <form :class="[{'hide-form': isFormHidden}, 'form']" @submit="onSubmit">
         <a @click="hideForm" :title="isFormHidden ? 'Show form' : 'Hide form'" class="hide-button btn" href="javascript:void(0)"><span class="arrow" :style="isFormHidden ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)'">▼</span></a>
-        <input class="name" id="firstInput" maxlength="40" v-model="name" type="text" required placeholder="Enter name">
-        <input type="number" class="money" v-model="money" min="0.01" step="0.01" required placeholder="Enter amount">
+        <input class="name color input-background" id="firstInput" maxlength="40" v-model="name" type="text" required placeholder="Enter name">
+        <input type="number" class="money color input-background" v-model="money" min="0.01" step="0.01" required placeholder="Enter amount">
         <input class="submit-btn btn" type="submit" value="Add to list">
     </form>
 </template>
@@ -85,14 +85,10 @@ export default {
       border-bottom: none;
     }
     form{
-        -webkit-box-shadow: inset 0px 10px 15px -10px rgba(66, 68, 90, 1);
-        -moz-box-shadow: inset 0px 10px 15px -10px rgba(66, 68, 90, 1);
-        box-shadow: inset 0px 10px 15px -10px rgba(66, 68, 90, 1);
         position: fixed;
         bottom: 0;
         padding-top: 15px;
         padding-bottom: 10px;
-        background-color: silver;
         width: 100%;
         text-align: center;
     }

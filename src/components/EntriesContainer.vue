@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="background-color color container">
         <h3>{{$route.name[0].toUpperCase()+$route.name.substring(1)}} total:</h3>
         <MoneyCounter :counterData="countDat"/>
         <div v-if="$route.name === 'loans' && loans.length > 0">
@@ -40,7 +40,6 @@ export default {
     main{
         width: 80%;
         padding: 10px 10px 20px;
-        background-color: silver;
         border-radius: 10px;
         margin: 50px auto 100px;
     }

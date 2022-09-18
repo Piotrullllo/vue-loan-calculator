@@ -1,5 +1,5 @@
 <template>
-    <div class="button-container">
+    <div class="button-container color background-color container">
         <TitleDiv />
         <h3>Total balance:</h3>
         <MoneyCounter :counterData="loadData"/>
@@ -54,8 +54,6 @@ export default {
         transform: translateX(-50%) translateY(-50%);
         width: 400px;
         border-radius: 10px;
-        background-color: silver;
-        color: black;
     }
     h3{
       margin: 4px 0;
