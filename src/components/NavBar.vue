@@ -1,27 +1,30 @@
 <template>
     <nav class="navbar">
-        <router-link v-if="routeMode" class="option" to="/menu">Go back</router-link>
+      <router-link v-if="this.$route.name !== 'settings'" class="option" to="/settings">Settings</router-link>
+      <router-link v-if="this.$route.name === 'loans' || this.$route.name === 'debts'" class="option" to="/menu">Go back</router-link>
+      <a @click="goBack" class="option"  v-if="this.$route.name == 'settings'" href="javascript:void(0)">Go back</a>
     </nav>
 </template>
 
 <script>
 export default {
   name: 'NavBar',
-  props: {
-    routeMode: Boolean
+  methods: {
+    goBack () {
+      history.back()
+    }
   }
 }
 </script>
 
 <style scoped>
 nav {
-  display: flex;
-  text-align: right;
   height: 64px;
+  display: flex;
+  justify-content: right;
 }
 nav .option {
   display: block;
-  margin-left: auto;
   width: 60px;
   margin-right: 10px;
   padding: 23px 32px;

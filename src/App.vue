@@ -1,5 +1,5 @@
 <template>
-  <NavBar :routeMode="checkForRoutes"/>
+  <NavBar/>
   <router-view/>
 </template>
 
@@ -44,16 +44,10 @@ export default {
       root.style.setProperty('--input-background', 'black');
     }
   },
-  computed: {
-    checkForRoutes () {
-      if (this.$route.name === 'loans' || this.$route.name === 'debts') return true
-      else return false
-    }
-  },
   mounted: function () {
     const theme = JSON.parse(window.localStorage.getItem('vue-loan-calc-theme'))
 
-    if(theme !== null){
+    if(theme !== null && theme !== 'system'){
       theme == 'dark' ? this.darkMode() : this.lightMode()
     } else {
       window.matchMedia('(prefers-color-scheme: dark)').matches ? this.darkMode() : this.lightMode()
@@ -106,7 +100,7 @@ export default {
 .remove-btn:hover{
   color: var(--hover-red) !important;
 }
-.entry-container{
+.entry-container, .setting-container{
   border: 1px solid var(--border);
   -webkit-box-shadow: 4px 4px 12px 0px var(--shadow-color);
   -moz-box-shadow: 4px 4px 12px 0px var(--shadow-color);
