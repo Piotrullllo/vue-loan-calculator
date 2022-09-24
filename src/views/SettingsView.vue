@@ -55,7 +55,7 @@
     data () {
         return {
             selectedCol: JSON.parse(window.localStorage.getItem('vue-loan-calc-theme')) ? JSON.parse(window.localStorage.getItem('vue-loan-calc-theme')) : 'system',
-            selectedCur: JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency ? JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency : '$'
+            selectedCur: JSON.parse(window.localStorage.getItem('vue-loan-calc-data')) ? JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency : '$'
         }
     }
   }
