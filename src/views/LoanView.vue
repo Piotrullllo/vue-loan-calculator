@@ -13,7 +13,7 @@ export default {
     return {
       preparedLoans: [],
       preparedDebts: [],
-      counterData: 0
+      counterData: 0,
     }
   },
   components: {
@@ -66,8 +66,6 @@ export default {
           debts: []
         }
       } else localhostData = JSON.parse(window.localStorage.getItem('vue-loan-calc-data'))
-
-      if (!confirm('Are you sure you want to remove ""' + entry.name + ' - ' + entry.money + '" entry?')) return
 
       if (entry.route === 'loans') {
         localhostData.loans = localhostData.loans.filter(loan => { return loan.id !== entry.id })

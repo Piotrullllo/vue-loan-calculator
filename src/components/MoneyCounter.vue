@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 :style="changeCounterColor">{{counterData.toFixed(2)}}</h3>
+        <h3 :style="changeCounterColor">{{((currency == "$" || currency == "£" ? currency : ''))}} {{counterData.toFixed(2)}} {{(currency !== "$" && currency !== "£") ? currency : ''}}</h3>
     </div>
 </template>
 <script>
@@ -8,6 +8,11 @@ export default {
   name: 'MoneyCounter',
   props: {
     counterData: Number
+  },
+  data () {
+    return {
+      currency: JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency ? JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency : '$'
+    }
   },
   computed: {
     changeCounterColor () {

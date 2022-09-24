@@ -84,7 +84,7 @@ export default {
       border-radius: 6px 6px 0 0;
       border-bottom: none;
     }
-    form{
+    .form{
         position: fixed;
         bottom: 0;
         padding-top: 15px;
@@ -93,6 +93,8 @@ export default {
         text-align: center;
     }
     input{
+        border: 1px solid;
+        border-radius: 5px;
         margin: 5px;
         padding: 4px;
         font-size: 18px;
@@ -117,11 +119,11 @@ export default {
         .name, .money, .submit-btn{
             margin: 5px 0;
             width: 90%;
-            font-size: 14px;
+            font-size: 16px;
             box-sizing: content-box;
         }
         .hide-form{
-          transform: translateY(138px);
+          transform: translateY(139px);
         }
     }
 </style>

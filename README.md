@@ -17,8 +17,11 @@ All user data is currently stored in localStorage, however there is planned the 
 https://piotrullllo.github.io/vue-loan-calculator/
 
 ## Changelog:
-#### Version 1.1.0 (in development):
-- Added dark theme support
-- Added settings view
+#### Version 1.1.0:
+- Added dark theme support,
+- Added settings view,
+- Added delete confirm dialog box,
+- Added currency support,
+- Fixed input styling
 #### Version 1.0.0:
 - Added basic app functionality

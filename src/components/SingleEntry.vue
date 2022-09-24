@@ -2,7 +2,7 @@
     <div class="entry-container">
         <div class="data-container">
             <p class="name">{{entry.name}}</p>
-            <p class="money">{{entry.money}}</p>
+            <p class="money">{{((currency == "$" || currency == "£" ? currency : ''))}} {{entry.money}} {{(currency !== "$" && currency !== "£") ? currency : ''}}</p>
             <p class="date">Added: {{new Date(this.entry.date)}}</p>
         </div>
         <button class="btn remove-btn" @click="removeEntry" title="Remove entry">X</button>
@@ -14,6 +14,11 @@ export default {
   name: 'SingleEntry',
   props: {
     entry: Object
+  },
+  data () {
+    return {
+        currency: JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency ? JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency : '$'
+    }
   },
   methods: {
     removeEntry (e) {

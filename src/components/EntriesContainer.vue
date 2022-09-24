@@ -3,18 +3,20 @@
         <h3>{{$route.name[0].toUpperCase()+$route.name.substring(1)}} total:</h3>
         <MoneyCounter :counterData="countDat"/>
         <div v-if="$route.name === 'loans' && loans.length > 0">
-            <SingleEntry @removed-entry="emitEntry" :key="loan.id" v-for="loan in loans" :entry="loan"/>
+            <SingleEntry @removed-entry="askForRemoval" :key="loan.id" v-for="loan in loans" :entry="loan"/>
         </div>
         <div v-if="$route.name === 'debts' && debts.length > 0">
-            <SingleEntry @removed-entry="emitEntry" :key="debt.id" v-for="debt in debts" :entry="debt"/>
+            <SingleEntry @removed-entry="askForRemoval" :key="debt.id" v-for="debt in debts" :entry="debt"/>
         </div>
         <p v-if="$route.name === 'loans' && loans.length === 0 || $route.name === 'debts' && debts.length === 0">The {{$route.name}} list is empty...</p>
     </main>
+    <DeleteBox @remove="emitEntry" @abort="hideDeleteBox" :display="displayDelete" :entryData="entry"/> 
 </template>
 
 <script>
 import SingleEntry from './SingleEntry.vue'
 import MoneyCounter from './MoneyCounter.vue'
+import DeleteBox from './DeleteBox.vue'
 
 export default {
   name: 'EntriesContainer',
@@ -23,13 +25,29 @@ export default {
     debts: Array,
     countDat: Number
   },
+  data () {
+    return{
+      displayDelete: false,
+      entry: {}
+    }
+  },
   components: {
     SingleEntry,
-    MoneyCounter
+    MoneyCounter,
+    DeleteBox
   },
   methods: {
     emitEntry (entry) {
       this.$emit('rem-entry', entry)
+      this.hideDeleteBox()
+    },
+    askForRemoval (entry) {
+      this.displayDelete = true
+      this.entry = entry
+    },
+    hideDeleteBox () {
+      this.displayDelete = false
+      this.entry = {}
     }
   },
   emits: ['rem-entry']

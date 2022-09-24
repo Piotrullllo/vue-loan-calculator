@@ -75,6 +75,10 @@ export default {
   --hover-red: rgb(215, 0, 0);
 }
 
+.form{
+  z-index: 99
+}
+
 .background-color{
   background-color: var(--background-color);
 }
@@ -98,7 +102,8 @@ export default {
   color: var(--color-red) !important;
 }
 .remove-btn:hover{
-  color: var(--hover-red) !important;
+  background-color: var(--hover-red) !important;
+  color: var(--hover-color) !important;
 }
 .entry-container, .setting-container{
   border: 1px solid var(--border);
