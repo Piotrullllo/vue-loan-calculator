@@ -17,7 +17,7 @@ export default {
   },
   data () {
     return {
-        currency: JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency ? JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency : '$'
+        currency: JSON.parse(window.localStorage.getItem('vue-loan-calc-data')) ? JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency : '$'
     }
   },
   methods: {
