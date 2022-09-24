@@ -43,10 +43,12 @@ export default {
     },
     askForRemoval (entry) {
       this.displayDelete = true
+      document.body.classList.add("box-open");
       this.entry = entry
     },
     hideDeleteBox () {
       this.displayDelete = false
+      document.body.classList.remove("box-open");
       this.entry = {}
     }
   },

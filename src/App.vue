@@ -75,10 +75,9 @@ export default {
   --hover-red: rgb(215, 0, 0);
 }
 
-.form{
-  z-index: 99
+body.box-open {
+  overflow: hidden;
 }
-
 .background-color{
   background-color: var(--background-color);
 }
