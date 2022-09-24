@@ -46,7 +46,16 @@
         },
         changeCur (e) {
             const currency = e.target.value;
-            const data = JSON.parse(window.localStorage.getItem('vue-loan-calc-data'))
+            let data
+            if (JSON.parse(window.localStorage.getItem('vue-loan-calc-data')) !== null){
+                data = JSON.parse(window.localStorage.getItem('vue-loan-calc-data'))
+            } else {
+                data = {
+                    loans: [],
+                    debts: [],
+                    currency: '$'
+                }
+            }
 
             data.currency = currency
             window.localStorage.setItem('vue-loan-calc-data', JSON.stringify(data))

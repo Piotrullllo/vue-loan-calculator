@@ -27,7 +27,8 @@ export default {
       if (window.localStorage.getItem('vue-loan-calc-data') === null) {
         localhostData = {
           loans: [],
-          debts: []
+          debts: [],
+          currency: '$'
         }
       } else localhostData = JSON.parse(window.localStorage.getItem('vue-loan-calc-data'))
 
@@ -63,7 +64,8 @@ export default {
       if (window.localStorage.getItem('vue-loan-calc-data') === null) {
         localhostData = {
           loans: [],
-          debts: []
+          debts: [],
+          currency: '$'
         }
       } else localhostData = JSON.parse(window.localStorage.getItem('vue-loan-calc-data'))
 
@@ -81,7 +83,8 @@ export default {
       if (window.localStorage.getItem('vue-loan-calc-data') === null) {
         this.downloadedData = {
           loans: [],
-          debts: []
+          debts: [],
+          currency: '$'
         }
       } else this.downloadedData = JSON.parse(window.localStorage.getItem('vue-loan-calc-data'))
 
