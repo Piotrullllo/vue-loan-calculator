@@ -1,5 +1,5 @@
 <template>
-    <div class="gray-out" v-if="display == true">
+    <div class="gray-out" @click="outsideClick" v-if="display == true">
         <div class="delete-box background-color color container">
             <p>Are you sure you want to delete "{{this.entryData.name}} - {{((currency == "$" || currency == "£" ? currency : ''))}}{{this.entryData.money}}{{(currency !== "$" && currency !== "£") ? currency : ''}}" entry?</p>
             <div class="buttons">
@@ -18,6 +18,9 @@ export default {
     entryData: Object
   },
   methods: {
+    outsideClick (e) {
+        if(e.target.classList.contains('gray-out'))this.abort()
+    },
     removeEntry () {
         this.$emit('remove', this.entryData)
     },
@@ -29,7 +32,8 @@ export default {
     return {
         currency: JSON.parse(window.localStorage.getItem('vue-loan-calc-data')) ? JSON.parse(window.localStorage.getItem('vue-loan-calc-data')).currency : '$'
     }
-  }
+  },
+  emits: ['remove', 'abort']
 }
 </script>
 <style scoped>

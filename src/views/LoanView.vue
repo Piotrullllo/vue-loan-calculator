@@ -1,5 +1,5 @@
 <template>
-    <EntriesContainer @rem-entry="removeEntry" :loans="preparedLoans" :debts="preparedDebts" :countDat="counterData"/>
+    <EntriesContainer @edit-entry="entryEditor" @rem-entry="removeEntry" :loans="preparedLoans" :debts="preparedDebts" :countDat="counterData"/>
     <FormInputs @entry-info="publishEntry"/>
 </template>
 
@@ -44,6 +44,10 @@ export default {
 
       this.addIDs()
       this.loadEntries()
+    },
+    entryEditor (entry) {
+      this.removeEntry(entry.old)
+      this.publishEntry(entry.new)
     },
     addIDs () {
       const data = JSON.parse(window.localStorage.getItem('vue-loan-calc-data'))
@@ -93,7 +97,13 @@ export default {
         this.preparedDebts = [...this.downloadedData.debts]
       }
 
+      this.preparedLoans = this.sortByDate(this.preparedLoans)
+      this.preparedDebts = this.sortByDate(this.preparedDebts)
+
       this.reloadCounter()
+    },
+    sortByDate (array) {
+      return array.sort((a, b) => new Date(b.date) - new Date(a.date))
     },
     reloadCounter () {
       this.counterData = 0

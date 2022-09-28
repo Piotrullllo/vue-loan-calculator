@@ -32,7 +32,7 @@
         <h3>About:</h3>
         <div class="setting-container">
             <p>App version:</p>
-            <p class="version">1.1.0</p>
+            <p class="version">1.1.1</p>
         </div>
     </main>
 </template>
@@ -77,7 +77,6 @@ body{
 main{
     width: 100%;
     min-height: calc(100vh - 64px);
-    padding-bottom: 30px;
 }
 main h3{
     margin: 0;

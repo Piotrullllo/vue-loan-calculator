@@ -3,20 +3,22 @@
         <h3>{{$route.name[0].toUpperCase()+$route.name.substring(1)}} total:</h3>
         <MoneyCounter :counterData="countDat"/>
         <div v-if="$route.name === 'loans' && loans.length > 0">
-            <SingleEntry @removed-entry="askForRemoval" :key="loan.id" v-for="loan in loans" :entry="loan"/>
+            <SingleEntry @edited-entry="displayEditBox" @removed-entry="askForRemoval" :key="loan.id" v-for="loan in loans" :entry="loan"/>
         </div>
         <div v-if="$route.name === 'debts' && debts.length > 0">
-            <SingleEntry @removed-entry="askForRemoval" :key="debt.id" v-for="debt in debts" :entry="debt"/>
+            <SingleEntry @edited-entry="displayEditBox" @removed-entry="askForRemoval" :key="debt.id" v-for="debt in debts" :entry="debt"/>
         </div>
         <p v-if="$route.name === 'loans' && loans.length === 0 || $route.name === 'debts' && debts.length === 0">The {{$route.name}} list is empty...</p>
     </main>
-    <DeleteBox @remove="emitEntry" @abort="hideDeleteBox" :display="displayDelete" :entryData="entry"/> 
+    <DeleteBox @remove="removeEntry" @abort="hideDeleteBox" :display="displayDelete" :entryData="delEntry"/> 
+    <EntryEditor @save-edit="saveEdition" @cancel="hideEdition" :display="displayEdit" :entryData="editEntry"/>
 </template>
 
 <script>
 import SingleEntry from './SingleEntry.vue'
 import MoneyCounter from './MoneyCounter.vue'
 import DeleteBox from './DeleteBox.vue'
+import EntryEditor from './EntryEditor.vue'
 
 export default {
   name: 'EntriesContainer',
@@ -28,31 +30,48 @@ export default {
   data () {
     return{
       displayDelete: false,
-      entry: {}
+      delEntry: {},
+      displayEdit: false,
+      editEntry: {}
     }
   },
   components: {
     SingleEntry,
     MoneyCounter,
-    DeleteBox
-  },
+    DeleteBox,
+    EntryEditor
+},
   methods: {
-    emitEntry (entry) {
+    removeEntry (entry) {
       this.$emit('rem-entry', entry)
       this.hideDeleteBox()
     },
     askForRemoval (entry) {
       this.displayDelete = true
-      document.body.classList.add("box-open");
-      this.entry = entry
+      document.body.classList.add("box-open")
+      this.delEntry = entry
     },
     hideDeleteBox () {
       this.displayDelete = false
-      document.body.classList.remove("box-open");
-      this.entry = {}
+      document.body.classList.remove("box-open")
+      this.delEntry = {}
+    },
+    displayEditBox (entry) {
+      this.displayEdit = true
+      document.body.classList.add("box-open")
+      this.editEntry = entry
+    },
+    hideEdition () {
+      this.displayEdit = false
+      document.body.classList.remove("box-open")
+      this.editEntry = {}
+    },
+    saveEdition (entry) {
+      this.$emit('edit-entry', entry)
+      this.hideEdition()
     }
   },
-  emits: ['rem-entry']
+  emits: ['rem-entry', 'edit-entry']
 }
 </script>
 

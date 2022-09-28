@@ -27,8 +27,9 @@ export default {
       root.style.setProperty('--nav-border', 'dimgray');
       root.style.setProperty('--shadow-color', 'rgb(66, 68, 90)');
       root.style.setProperty('--light-shadow', 'rgb(170, 170, 180)');
-      root.style.setProperty('--date-color', 'dimgray');
       root.style.setProperty('--input-background', 'white');
+      root.style.setProperty('--dis-color', 'rgb(40, 40, 40)');
+      root.style.setProperty('--dis-background', 'gray');
     },
     darkMode () {
       const root = document.querySelector(':root');
@@ -40,8 +41,9 @@ export default {
       root.style.setProperty('--nav-border', 'silver');
       root.style.setProperty('--shadow-color', 'black');
       root.style.setProperty('--light-shadow', 'rgb(80, 80, 80)');
-      root.style.setProperty('--date-color', 'gray');
       root.style.setProperty('--input-background', 'black');
+      root.style.setProperty('--dis-color', 'dimgray');
+      root.style.setProperty('--dis-background', 'rgb(40, 40, 40)');
     }
   },
   mounted: function () {
@@ -70,13 +72,19 @@ export default {
   --nav-border: dimgray;
   --shadow-color: rgb(66, 68, 90);
   --light-shadow: rgb(170, 170, 180);
-  --date-color: dimgray;
   --color-red: red;
   --hover-red: rgb(215, 0, 0);
+  --dis-color: rgb(40, 40, 40);
+  --dis-background: gray;
 }
 
 body.box-open {
   overflow: hidden;
+}
+.entry-container-hover{
+  color: var(--hover-color) !important;
+  background-color: var(--background-hover) !important;
+  border-color: var(--border) !important;
 }
 .background-color{
   background-color: var(--background-color);
@@ -87,9 +95,6 @@ body.box-open {
 .input-background{
   background-color: var(--input-background);
   border-color: var(--background-color)
-}
-.date{
-  color: var(--date-color)
 }
 .form{
   -webkit-box-shadow: inset 0px 10px 15px -10px var(--shadow-color);
@@ -157,14 +162,20 @@ body{
   text-decoration: none;
   background-color: var(--background-color);
 }
-.btn:hover{
+.btn:disabled{
+  background-color: var(--dis-background) !important;
+  border-color: var(--dis-color) !important;
+  color: var(--dis-color) !important;
+  cursor: not-allowed !important;
+}
+.btn:hover:not([disabled]){
   -webkit-box-shadow: inset 3px 3px 10px 0px var(--light-shadow);
   -moz-box-shadow: inset 3px 3px 10px 0px var(--light-shadow);
   box-shadow: inset 3px 3px 10px 0px var(--light-shadow);
   background-color: var(--background-hover);
   color: var(--hover-color);
 }
-.btn, nav .option{
+.btn, nav .option, .entry-container{
   transition: color .25s, background-color .25s, box-shadow .25s;
 }
 </style>
